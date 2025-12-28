@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/PracticeScenes/PracticeMain.unity
+    guid: 08576be075a521f42a4d254e9adf1e0b
+  - enabled: 1
+    path: Assets/PracticeScenes/PracticeBattle.unity
+    guid: 8817d47fc5991a74380dff9a41517804
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
