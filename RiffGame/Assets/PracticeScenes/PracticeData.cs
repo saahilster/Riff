@@ -8,4 +8,5 @@ public class PracticeData
     public string[] playerPartyID;
     public string arenaID;
     
+    
 }
