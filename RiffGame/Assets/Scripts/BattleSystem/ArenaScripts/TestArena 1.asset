@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82ead33e37de82346825ca12cb9138a2, type: 3}
-  m_Name: TestArena
+  m_Script: {fileID: 11500000, guid: 181958f09935a0a488a110b7743d8d1a, type: 3}
+  m_Name: TestArena 1
   m_EditorClassIdentifier: Assembly-CSharp::ArenaData
-  arenaName: battle00
-  prefab: {fileID: 465199455564073536, guid: 98761581250088744811daa5e45272d8, type: 3}
+  arenaName: Gurt
+  arenaPrefab: {fileID: 0}
