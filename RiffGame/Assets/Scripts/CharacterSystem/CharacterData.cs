@@ -4,10 +4,15 @@ using UnityEngine;
 public class CharacterData : ScriptableObject
 {
     
+    //ID and UI
     public string keyName;
     //ID will be used for minifigs Read block 1, First Byte will be the ID 
     public int CharacterID;
     public string displayName;
+    public Sprite icon;
+
+
+    //Actual Stats
     public string[] weaknesses;
     public string[] resists;
     public float HP;
