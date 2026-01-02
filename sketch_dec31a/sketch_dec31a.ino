@@ -1,0 +1,97 @@
+#include <SPI.h>
+#include <Wire.h>
+#include <MFRC522.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+// For RFID Scanner
+#define SS_PIN 10
+#define RST_PIN 9
+
+MFRC522 reader(SS_PIN, RST_PIN);
+MFRC522::MIFARE_Key key;
+MFRC522::StatusCode status;
+
+byte dataBlock[] = {};
+byte blockAddress = 1;
+byte trailerBlock = 3;
+byte buffer[18];
+byte size = sizeof(buffer);
+
+//Only commands now is needing the arduino to summon and save data.
+String unityCommands[] = {
+  "SUMMON",
+  "SAVE"
+};
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  SPI.begin();
+  reader.PCD_Init();
+
+  for (byte i = 0; i < 6; i++){
+    key.keyByte[i] = 0xFF;
+  }
+
+  DumpByte(key.keyByte, MFRC522::MF_KEY_SIZE);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Serial.print(UnityOrder());
+  if (UnityOrder() == unityCommands[0]){
+    Serial.println("Unity Request Summonce");
+  }
+  else if (UnityOrder() == unityCommands[1]){
+    Serial.println("Unity Request Save data");
+  }
+}
+
+void DumpByte(byte *buffer, byte bufferSize){
+  for (byte i = 0; i < bufferSize; i++){
+    Serial.print(buffer[i] < 0x10 ? "0" : " ");
+    Serial.print(buffer[i], HEX);
+    Serial.print(" ");
+  }
+}
+
+void Authenticate(byte block){
+  status = (MFRC522::StatusCode) reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(reader.uid));
+  if (status != MFRC522::STATUS_OK){
+    Serial.println(F("Authenticate A failed"));
+  }
+
+  status = (MFRC522::StatusCode) reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, block, &key, &(reader.uid));
+  if (status != MFRC522::STATUS_OK){
+    Serial.println(F("Authenticate B failed"));
+  }
+  Serial.println(F("Authentication Success!"));
+}
+
+//This function reads data block and will send it to unity.
+void ReadCharacter(byte blockAddr){
+  Authenticate(blockAddress);
+  status = (MFRC522::StatusCode) reader.MIFARE_Read(blockAddress, *buffer, &size);
+  DumpByte(buffer, 16);
+}
+
+String UnityOrder(){
+  if (!Serial.available()){
+    return "Serial not opened";
+  }
+
+  String order = Serial.readStringUntil("\n");
+  return order;
+}
+
+
+
+
+
+
+
+
+
+
+
