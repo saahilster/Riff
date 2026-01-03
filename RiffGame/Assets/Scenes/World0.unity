@@ -1571,6 +1571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122901254}
   - component: {fileID: 1122901255}
+  - component: {fileID: 1122901256}
   m_Layer: 0
   m_Name: PartyManager
   m_TagString: Untagged
@@ -1607,7 +1608,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActivePartyManager
   AddingMember:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1122901256}
+        m_TargetAssemblyTypeName: AddMember, Assembly-CSharp
+        m_MethodName: SummonRequest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1122901256}
+        m_TargetAssemblyTypeName: AddMember, Assembly-CSharp
+        m_MethodName: RegisterCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   RemovingMember:
     m_PersistentCalls:
       m_Calls: []
@@ -1616,6 +1641,19 @@ MonoBehaviour:
   party: {fileID: 11400000, guid: f912d2dceb77dbe45bc6c6f7789ceb42, type: 2}
   dataBase: {fileID: 0}
   noti: {fileID: 1137145984}
+--- !u!114 &1122901256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122901252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9637652950fc04aa5c6638b81dc240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AddMember
+  figureBase: {fileID: 11400000, guid: 477fdd517f7a7884c9c9389918c5dcdd, type: 2}
 --- !u!1 &1137145982
 GameObject:
   m_ObjectHideFlags: 0
