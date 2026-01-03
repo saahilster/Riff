@@ -41,11 +41,8 @@ public class AddMember : MonoBehaviour
             Debug.Log("port not opened");
             return;
         }
-
         data = port.ReadLine();
-        Debug.Log($"Nano sent: {data}");
-        
+        Debug.Log($"Nano sent: {data}");   
+        int recievedID = int.Parse(data.Substring(0,2));
     }
-
-
 }
