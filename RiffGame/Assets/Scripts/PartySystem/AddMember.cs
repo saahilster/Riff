@@ -3,6 +3,8 @@ using System.IO.Ports;
 using System.Globalization;
 using UnityEngine.TextCore.Text;
 using UnityEditor.Experimental.GraphView;
+using System;
+using System.Linq;
 
 //Script meant to send a summon call to Nano then register the data.
 public class AddMember : MonoBehaviour
@@ -12,12 +14,17 @@ public class AddMember : MonoBehaviour
     string data;
     [SerializeField] CharacterDataBase figureBase;
 
+    private static bool IsHexChar(char c) =>
+    (c >= '0' && c <= '9') ||
+    (c >= 'A' && c <= 'F') ||
+    (c >= 'a' && c <= 'f');
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         port.Open();
-        port.ReadTimeout = 500;
+        port.ReadTimeout = 3000;
     }
 
     // Update is called once per frame
@@ -39,23 +46,60 @@ public class AddMember : MonoBehaviour
 
     public void RegisterCharacter()
     {
-        if (!port.IsOpen)
+        if (port == null || !port.IsOpen)
         {
             Debug.Log("port not opened");
             return;
         }
-        data = port.ReadLine();
-        Debug.Log($"Nano sent: {data}");   
-        int recievedID = int.Parse(data.Substring(0,2), NumberStyles.HexNumber);
 
-        for (int i = 0; i > figureBase.database.Count - 1; i++)
+        string line;
+        try
         {
-            if (figureBase.database[i].CharacterID == recievedID)
+            line = port.ReadLine();
+        }
+        catch (TimeoutException)
+        {
+            Debug.LogWarning("Timed out waiting for Arduino line.");
+            return;
+        }
+
+        line = line.Trim();
+        Debug.Log($"Nano sent raw: '{line}'");
+
+        // Handle error/status lines from Arduino
+        if (line.StartsWith("NO_CARD") || line.StartsWith("READ_FAIL"))
+        {
+            Debug.LogWarning($"Arduino status: {line}");
+            return;
+        }
+
+        string hex = line.Replace(" ", "").ToUpperInvariant();
+
+        // Validate it looks like 32 hex chars (16 bytes)
+        if (hex.Length != 32 || !hex.All(IsHexChar))
+        {
+            Debug.LogWarning($"Unexpected payload: '{hex}' (len {hex.Length})");
+            return;
+        }
+
+        // First byte is the ID (02 for medic etc.)
+        if (!int.TryParse(hex.Substring(0, 2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int receivedID))
+        {
+            Debug.LogWarning($"Could not parse ID from '{hex}'");
+            return;
+        }
+
+        for (int i = 0; i < figureBase.database.Count; i++)
+        {
+            if (figureBase.database[i].CharacterID == receivedID)
             {
-                Debug.Log("Found character!");
-                break;
+                Debug.Log($"Found character! Parsed ID: {receivedID}");
+                return;
             }
-            else{ Debug.Log("Not found yet");}
+            else
+            {
+                Debug.Log($"Character not found Parsed ID: {receivedID}");
+            }
         }
     }
 }

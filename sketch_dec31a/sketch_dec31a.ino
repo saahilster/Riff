@@ -24,13 +24,15 @@ String unityCommands[] = {
   "SAVE"
 };
 
+String order;
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
   SPI.begin();
   reader.PCD_Init();
 
-  for (byte i = 0; i < 6; i++){
+  for (byte i = 0; i < 6; i++) {
     key.keyByte[i] = 0xFF;
   }
 
@@ -38,60 +40,73 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  Serial.print(UnityOrder());
-  if (UnityOrder() == unityCommands[0]){
-    Serial.println("Unity Request Summonce");
-  }
-  else if (UnityOrder() == unityCommands[1]){
+  String order = UnityOrder();  // read ONCE
+  if (order.length() == 0) return;
+
+  if (order == "SUMMON") {
+    if (!reader.PICC_IsNewCardPresent() || !reader.PICC_ReadCardSerial()) {
+      Serial.println("NO_CARD");
+      reader.PICC_HaltA();
+      reader.PCD_StopCrypto1();
+      return;
+    }
+
+    Authenticate(blockAddress);
+    status = (MFRC522::StatusCode)reader.MIFARE_Read(blockAddress, buffer, &size);
+    if (status != MFRC522::STATUS_OK) {
+      Serial.print("READ_FAIL:");
+      Serial.println(reader.GetStatusCodeName(status));
+      reader.PICC_HaltA();
+      reader.PCD_StopCrypto1();
+      return;
+    }
+
+    DumpByte(buffer, 16);
+    Serial.println();
+  } else if (order == unityCommands[1]) {
     Serial.println("Unity Request Save data");
+    reader.PICC_HaltA();
+    reader.PCD_StopCrypto1();
   }
+
+  reader.PICC_HaltA();
+  reader.PCD_StopCrypto1();
 }
 
-void DumpByte(byte *buffer, byte bufferSize){
-  for (byte i = 0; i < bufferSize; i++){
+void DumpByte(byte *buffer, byte bufferSize) {
+  for (byte i = 0; i < bufferSize; i++) {
     Serial.print(buffer[i] < 0x10 ? "0" : " ");
     Serial.print(buffer[i], HEX);
-    Serial.print(" ");
   }
 }
 
-void Authenticate(byte block){
-  status = (MFRC522::StatusCode) reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(reader.uid));
-  if (status != MFRC522::STATUS_OK){
-    Serial.println(F("Authenticate A failed"));
+void Authenticate(byte block) {
+  status = (MFRC522::StatusCode)reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, block, &key, &(reader.uid));
+  if (status != MFRC522::STATUS_OK) {
+    // Serial.println(F("Authenticate A failed"));
   }
 
-  status = (MFRC522::StatusCode) reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, block, &key, &(reader.uid));
-  if (status != MFRC522::STATUS_OK){
-    Serial.println(F("Authenticate B failed"));
+  status = (MFRC522::StatusCode)reader.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_B, block, &key, &(reader.uid));
+  if (status != MFRC522::STATUS_OK) {
+    // Serial.println(F("Authenticate B failed"));
   }
-  Serial.println(F("Authentication Success!"));
 }
 
 //This function reads data block and will send it to unity.
-void ReadCharacter(byte blockAddr){
+void ReadCharacter(byte blockAddr) {
   Authenticate(blockAddress);
-  status = (MFRC522::StatusCode) reader.MIFARE_Read(blockAddress, *buffer, &size);
+  status = (MFRC522::StatusCode)reader.MIFARE_Read(blockAddr, buffer, &size);
+  if (status != MFRC522::STATUS_OK) {
+    Serial.print("READ_FAIL:");
+    Serial.println(reader.GetStatusCodeName(status));
+    return;
+  }
   DumpByte(buffer, 16);
+  Serial.println();
 }
 
-String UnityOrder(){
-  if (!Serial.available()){
-    return "Serial not opened";
-  }
-
-  String order = Serial.readStringUntil("\n");
+String UnityOrder() {
+  String order = Serial.readStringUntil('\n');
+  order.trim();
   return order;
 }
-
-
-
-
-
-
-
-
-
-
-
