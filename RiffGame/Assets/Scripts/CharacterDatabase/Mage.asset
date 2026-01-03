@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21988c391164484ebdebe4e6cc819ca, type: 3}
   m_Name: Mage
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  CharacterID: 1
   keyName: Mage
-  CharacterID: 0
   displayName: 
+  icon: {fileID: 0}
   weaknesses: []
   resists: []
   HP: 0
   MP: 0
   level: 0
-  XP: 0
   strength: 0
   defense: 0
-  agility: 0
   moveset: []
+  battlePrefab: {fileID: 0}
+  partyPrefab: {fileID: 0}
