@@ -1,10 +1,44 @@
 using UnityEngine;
 using System.IO.Ports;
 using System.Globalization;
-using UnityEngine.TextCore.Text;
-using UnityEditor.Experimental.GraphView;
 using System;
 using System.Linq;
+using UnityEngine.UI;
+using Unity.VisualScripting;
+
+public class UISlot
+{
+    private Image _slot;
+
+    public UISlot(Image slot)
+    {
+        slot = this._slot;
+    }
+
+    public bool CheckStatus()
+    {
+        if (_slot.sprite == null)
+        {
+            Debug.Log("Available");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Occupied");
+            return false;
+        }
+    }
+
+    public void AddIcon(Sprite icon)
+    {
+        _slot.sprite = icon;
+    }
+
+    public void RemoveIcon()
+    {
+        _slot.sprite = null;
+    }
+}
 
 //Script meant to send a summon call to Nano then register the data.
 public class AddMember : MonoBehaviour
@@ -19,6 +53,26 @@ public class AddMember : MonoBehaviour
     (c >= 'A' && c <= 'F') ||
     (c >= 'a' && c <= 'f');
 
+
+    //FOR UI
+    [SerializeField] Image icon1;
+    [SerializeField] Image icon2;
+    [SerializeField] Image icon3;
+
+    private UISlot slot1;
+    private UISlot slot2;
+    private UISlot slot3;
+
+    private UISlot[] characterSlots;
+
+    void Awake()
+    {
+        slot1 = new UISlot(icon1);
+        slot2 = new UISlot(icon2);
+        slot3 = new UISlot(icon3);
+
+        characterSlots = new UISlot[] { slot1, slot2, slot3 };
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -94,11 +148,33 @@ public class AddMember : MonoBehaviour
             if (figureBase.database[i].CharacterID == receivedID)
             {
                 Debug.Log($"Found character! Parsed ID: {receivedID}");
+                CharacterData playable = figureBase.database[i];
+
+                SetSlot(playable);
+
                 return;
             }
             else
             {
                 Debug.Log($"Character not found Parsed ID: {receivedID}");
+            }
+        }
+    }
+
+    public void SetSlot(CharacterData figure)
+    {
+        foreach (UISlot slot in characterSlots)
+        {
+            if (slot.CheckStatus())
+            {
+                Sprite characterIcon = figure.icon;
+                slot.AddIcon(characterIcon);
+                Debug.Log("Icon successfully added");
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("Icon spot taken cannot add icon!");
             }
         }
     }
