@@ -43,7 +43,21 @@ public class ActivePartyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (status == EditStatus.Adding)
+        {
+            AddingMember.Invoke();
+            status = EditStatus.Idle;
+            Debug.Log("Finshed adding.");
+        }
+        else if (status == EditStatus.Deleting)
+        {
+            RemovingMember.Invoke(); 
+            status = EditStatus.Idle;  
+        }
+        else
+        {
+            return;
+        }
     }
 
     public void ResetNoti()

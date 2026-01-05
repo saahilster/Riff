@@ -9,10 +9,10 @@ using Unity.VisualScripting;
 public class UISlot
 {
     private Image _slot;
-
+    private Transform _pos;
     public UISlot(Image slot)
     {
-        slot = this._slot;
+        this._slot = slot;
     }
 
     public bool CheckStatus()
@@ -33,7 +33,7 @@ public class UISlot
     {
         _slot.sprite = icon;
     }
-
+    //DW about removing character
     public void RemoveIcon()
     {
         _slot.sprite = null;
@@ -47,14 +47,16 @@ public class AddMember : MonoBehaviour
     string summon = "SUMMON";
     string data;
     [SerializeField] CharacterDataBase figureBase;
+    [SerializeField] CharacterDataBase partyBase;
 
     private static bool IsHexChar(char c) =>
     (c >= '0' && c <= '9') ||
     (c >= 'A' && c <= 'F') ||
     (c >= 'a' && c <= 'f');
 
+    [SerializeField] ActivePartyManager partyManager;
 
-    //FOR UI
+    //UI   
     [SerializeField] Image icon1;
     [SerializeField] Image icon2;
     [SerializeField] Image icon3;
@@ -62,16 +64,26 @@ public class AddMember : MonoBehaviour
     private UISlot slot1;
     private UISlot slot2;
     private UISlot slot3;
-
     private UISlot[] characterSlots;
+
+    //Transform references for party
+    [SerializeField] Transform leader;
+    [SerializeField] Transform follower1;
+    [SerializeField] Transform follower2;
+    private Transform[] positions;
 
     void Awake()
     {
+        if (partyBase != null && partyBase.database != null)
+        {
+            partyBase.database.Clear();
+        }
         slot1 = new UISlot(icon1);
         slot2 = new UISlot(icon2);
         slot3 = new UISlot(icon3);
 
         characterSlots = new UISlot[] { slot1, slot2, slot3 };
+        positions = new Transform[] { leader, follower1, follower2 };
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -149,9 +161,8 @@ public class AddMember : MonoBehaviour
             {
                 Debug.Log($"Found character! Parsed ID: {receivedID}");
                 CharacterData playable = figureBase.database[i];
-
-                SetSlot(playable);
-
+                CheckMember(playable);
+                Debug.Log("Finished adding to the party");
                 return;
             }
             else
@@ -161,6 +172,7 @@ public class AddMember : MonoBehaviour
         }
     }
 
+    //gets called in Register Chracter
     public void SetSlot(CharacterData figure)
     {
         foreach (UISlot slot in characterSlots)
@@ -176,6 +188,72 @@ public class AddMember : MonoBehaviour
             {
                 Debug.LogWarning("Icon spot taken cannot add icon!");
             }
+        }
+    }
+    //Iterates through current party to make sure there isn't duplicates
+    public void CheckMember(CharacterData figure)
+    {
+        // figure.partyPrefab.GetComponent<CameraFollow>().enabled = false;
+        figure.partyPrefab.GetComponent<CapsuleCollider>().enabled = true;
+        figure.partyPrefab.GetComponent<PlayerMovement>().enabled = true;
+        figure.partyPrefab.GetComponent<Rigidbody>().isKinematic = false;
+        bool isLeader = true;
+
+        if (partyManager.currentSize > 1)
+        {
+            isLeader = false;
+        }
+        else
+        {
+            isLeader = true;
+        }
+
+        if (partyBase.database.Count >= 3)
+        {
+            Debug.Log("Party full cannot add anymore.");
+        }
+        if (partyBase.database == null)
+        {
+            Debug.Log("Null base");
+        }
+        if (partyBase.database.Contains(figure))
+        {
+            Debug.Log("figure already in party");
+            return;
+        }
+
+        SetSlot(figure);
+        partyBase.database.Add(figure);
+        partyManager.currentSize++;
+
+        if (isLeader)
+        {
+            GameObject member = Instantiate(figure.partyPrefab, positions[partyManager.currentSize - 1]);
+            // member.GetComponent<CameraFollow>().enabled = false;
+        }
+        else
+        {
+            GameObject partyMember = Instantiate(figure.partyPrefab, positions[partyManager.currentSize - 1]);
+            // partyMember.GetComponent<CameraFollow>().enabled = true;
+            partyMember.GetComponent<CapsuleCollider>().enabled = true;
+            partyMember.GetComponent<PlayerMovement>().enabled = false;
+            partyMember.GetComponent<Rigidbody>().isKinematic = false;
+
+            // --- corrected layer collision filtering (followers collide ONLY with Ground) ---
+            int followerLayer = LayerMask.NameToLayer("Follower");
+
+            SetLayerRecursively(partyMember, followerLayer);
+        }
+        Debug.Log("MemberCheck reached the end");
+    }
+
+    public static void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
         }
     }
 }

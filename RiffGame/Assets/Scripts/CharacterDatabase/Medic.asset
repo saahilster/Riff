@@ -15,7 +15,7 @@ MonoBehaviour:
   CharacterID: 2
   keyName: Medic
   displayName: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 25d8abec7cc55e84298591d502e89dd0, type: 3}
   weaknesses: []
   resists: []
   HP: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   defense: 0
   moveset: []
   battlePrefab: {fileID: 0}
-  partyPrefab: {fileID: 0}
+  partyPrefab: {fileID: 2218580784402777457, guid: a356bebbd52222d458c97a68c6105cb1, type: 3}

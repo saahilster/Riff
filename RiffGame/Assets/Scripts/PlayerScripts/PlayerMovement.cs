@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PracticeMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     InputSystem_Actions controls; 
     InputAction movement;
