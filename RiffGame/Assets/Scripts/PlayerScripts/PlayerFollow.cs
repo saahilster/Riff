@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerFollow : MonoBehaviour
 {
-    [SerializeField] CameraFollow cf;
     Transform leader;
     [SerializeField] float xOffset;
     [SerializeField] float zOffset;
@@ -12,7 +11,6 @@ public class PlayerFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        leader = cf.target;
     }
 
     // Update is called once per frame
@@ -29,8 +27,12 @@ public class PlayerFollow : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target, speed);
+        transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
     }
 
+    public void SetTarget(Transform chosen)
+    {
+        leader = chosen;
+    }
 
 }

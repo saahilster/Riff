@@ -46,6 +46,7 @@ public class AddMember : MonoBehaviour
     SerialPort port = new SerialPort("COM4", 9600);
     string summon = "SUMMON";
     string data;
+    private Transform leader;
     [SerializeField] CharacterDataBase figureBase;
     [SerializeField] CharacterDataBase partyBase;
 
@@ -67,7 +68,7 @@ public class AddMember : MonoBehaviour
     private UISlot[] characterSlots;
 
     //Transform references for party
-    [SerializeField] Transform leader;
+    [SerializeField] Transform leaderPosition;
     [SerializeField] Transform follower1;
     [SerializeField] Transform follower2;
     private Transform[] positions;
@@ -83,7 +84,7 @@ public class AddMember : MonoBehaviour
         slot3 = new UISlot(icon3);
 
         characterSlots = new UISlot[] { slot1, slot2, slot3 };
-        positions = new Transform[] { leader, follower1, follower2 };
+        // positions = new Transform[] { leader, follower1, follower2 };
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -193,20 +194,6 @@ public class AddMember : MonoBehaviour
     //Iterates through current party to make sure there isn't duplicates
     public void CheckMember(CharacterData figure)
     {
-        // figure.partyPrefab.GetComponent<CameraFollow>().enabled = false;
-        figure.partyPrefab.GetComponent<CapsuleCollider>().enabled = true;
-        figure.partyPrefab.GetComponent<PlayerMovement>().enabled = true;
-        figure.partyPrefab.GetComponent<Rigidbody>().isKinematic = false;
-        bool isLeader = true;
-
-        if (partyManager.currentSize > 1)
-        {
-            isLeader = false;
-        }
-        else
-        {
-            isLeader = true;
-        }
 
         if (partyBase.database.Count >= 3)
         {
@@ -224,27 +211,18 @@ public class AddMember : MonoBehaviour
 
         SetSlot(figure);
         partyBase.database.Add(figure);
-        partyManager.currentSize++;
 
-        if (isLeader)
+        if (figure.partyPrefab.GetComponent<PlayerMovement>() != null)
         {
-            GameObject member = Instantiate(figure.partyPrefab, positions[partyManager.currentSize - 1]);
-            // member.GetComponent<CameraFollow>().enabled = false;
+            GameObject member = Instantiate(figure.partyPrefab, leaderPosition);
+            leader = member.transform;
         }
         else
         {
-            GameObject partyMember = Instantiate(figure.partyPrefab, positions[partyManager.currentSize - 1]);
-            // partyMember.GetComponent<CameraFollow>().enabled = true;
-            partyMember.GetComponent<CapsuleCollider>().enabled = true;
-            partyMember.GetComponent<PlayerMovement>().enabled = false;
-            partyMember.GetComponent<Rigidbody>().isKinematic = false;
-
-            // --- corrected layer collision filtering (followers collide ONLY with Ground) ---
-            int followerLayer = LayerMask.NameToLayer("Follower");
-
-            SetLayerRecursively(partyMember, followerLayer);
+            GameObject member = Instantiate(figure.partyPrefab);
+            member.GetComponent<PlayerFollow>().SetTarget(leader);
         }
-        Debug.Log("MemberCheck reached the end");
+        partyManager.currentSize++;
     }
 
     public static void SetLayerRecursively(GameObject obj, int layer)

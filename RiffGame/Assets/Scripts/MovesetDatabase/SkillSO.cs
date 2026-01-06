@@ -18,5 +18,10 @@ public class SkillSO : ScriptableObject
 
     //"under the hood" data
     public float damage;
-    public string type;    
+    public string type;  
+    //Default values for these will be 1. buffs in this game will work by multiplying the user's stats
+    public float strMultiplier;
+    public float defMultiplier;
+    //how many turns will it last.
+    public int turnDuration;
 }
