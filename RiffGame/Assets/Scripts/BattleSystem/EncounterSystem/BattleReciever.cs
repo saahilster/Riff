@@ -17,7 +17,6 @@ public class BattleReciever : MonoBehaviour
         if (recievedData == null) Debug.Log("Null data"); 
 
         Debug.Log(recievedData.arenaID);
-        Debug.Log(EncounterCollector.Has(key));
 
         Invoke("StartEvent", 1);
     }

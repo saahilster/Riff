@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21988c391164484ebdebe4e6cc819ca, type: 3}
-  m_Name: Mage
+  m_Name: CubeOpp
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  CharacterID: 1
-  keyName: Mage
-  displayName: Wizard
-  icon: {fileID: 21300000, guid: b3c31308c3180514a845edfed0448560, type: 3}
+  CharacterID: 10
+  keyName: CubeOpp
+  displayName: Chud Opp
+  icon: {fileID: 0}
   weaknesses: []
   resists: []
   HP: 0
@@ -24,5 +24,5 @@ MonoBehaviour:
   strength: 0
   defense: 0
   moveset: []
-  battlePrefab: {fileID: 2056702055880963101, guid: 4ceef151cf6bd02498973e3bb20e18b4, type: 3}
-  partyPrefab: {fileID: 2056702055880963101, guid: 984a6a92e8e32ac4caaf4fad13bcef63, type: 3}
+  battlePrefab: {fileID: 6287888698733699654, guid: bb4e59bcad7e5f94e8ac91cf9f02a25e, type: 3}
+  partyPrefab: {fileID: 0}

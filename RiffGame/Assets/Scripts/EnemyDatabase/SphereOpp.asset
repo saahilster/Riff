@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e21988c391164484ebdebe4e6cc819ca, type: 3}
-  m_Name: Mage
+  m_Name: SphereOpp
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  CharacterID: 1
-  keyName: Mage
-  displayName: Wizard
-  icon: {fileID: 21300000, guid: b3c31308c3180514a845edfed0448560, type: 3}
+  CharacterID: 11
+  keyName: SphereOpp
+  displayName: Yoselyn
+  icon: {fileID: 0}
   weaknesses: []
   resists: []
   HP: 0
@@ -24,5 +24,5 @@ MonoBehaviour:
   strength: 0
   defense: 0
   moveset: []
-  battlePrefab: {fileID: 2056702055880963101, guid: 4ceef151cf6bd02498973e3bb20e18b4, type: 3}
-  partyPrefab: {fileID: 2056702055880963101, guid: 984a6a92e8e32ac4caaf4fad13bcef63, type: 3}
+  battlePrefab: {fileID: 7113337093616712246, guid: 235a6fa3b5d547a4b9bda40eeecde88f, type: 3}
+  partyPrefab: {fileID: 0}

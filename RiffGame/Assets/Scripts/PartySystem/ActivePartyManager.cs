@@ -36,7 +36,6 @@ public class ActivePartyManager : MonoBehaviour
     void Start()
     {
         status = EditStatus.Idle;
-        Debug.Log(party.database.Count);
         ResetNoti();
     }
 

@@ -5,7 +5,6 @@ public class BattleData : ScriptableObject
 {
     public string keyName;
     public bool Boss;
-    public CharacterData[] playerParty;
     public CharacterData[] enemyParty;
     public string arenaID;
 }

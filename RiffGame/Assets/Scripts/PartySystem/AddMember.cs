@@ -43,6 +43,10 @@ public class UISlot
 //Script meant to send a summon call to Nano then register the data.
 public class AddMember : MonoBehaviour
 {
+
+    [Tooltip("Enable developer mode to bypass the use of figures and the scanner. To use this make sure to put the desired party members into the party data base ScriptableObject.")]
+    [SerializeField] bool devMode;
+
     SerialPort port = new SerialPort("COM4", 9600);
     string summon = "SUMMON";
     string data;
@@ -79,6 +83,7 @@ public class AddMember : MonoBehaviour
         {
             partyBase.database.Clear();
         }
+
         slot1 = new UISlot(icon1);
         slot2 = new UISlot(icon2);
         slot3 = new UISlot(icon3);
@@ -225,13 +230,4 @@ public class AddMember : MonoBehaviour
         partyManager.currentSize++;
     }
 
-    public static void SetLayerRecursively(GameObject obj, int layer)
-    {
-        obj.layer = layer;
-
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursively(child.gameObject, layer);
-        }
-    }
 }

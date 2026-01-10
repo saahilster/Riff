@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   CharacterID: 2
   keyName: Medic
-  displayName: 
+  displayName: Medic
   icon: {fileID: 21300000, guid: 25d8abec7cc55e84298591d502e89dd0, type: 3}
   weaknesses: []
   resists: []
@@ -24,5 +24,5 @@ MonoBehaviour:
   strength: 0
   defense: 0
   moveset: []
-  battlePrefab: {fileID: 0}
+  battlePrefab: {fileID: 2218580784402777457, guid: b62f28f05c800874e85219f82a409ccf, type: 3}
   partyPrefab: {fileID: 2218580784402777457, guid: a356bebbd52222d458c97a68c6105cb1, type: 3}

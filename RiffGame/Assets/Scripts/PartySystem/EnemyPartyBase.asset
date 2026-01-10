@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c439a0385b8eb4e9033cfe91a0fb14, type: 3}
-  m_Name: PartyBase
+  m_Name: EnemyPartyBase
   m_EditorClassIdentifier: Assembly-CSharp::CharacterDataBase
-  baseName: Party
-  database:
-  - {fileID: 11400000, guid: 4c107a980986ea141b11587fd64be704, type: 2}
-  - {fileID: 11400000, guid: 43536d71f061dd44abee01b96820caff, type: 2}
+  baseName: Enemy Party
+  database: []
