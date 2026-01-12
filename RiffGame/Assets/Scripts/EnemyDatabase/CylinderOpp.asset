@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   CharacterID: 12
   keyName: Cyl Enemy
+  isOpp: 1
   displayName: round Opp
   icon: {fileID: 0}
   weaknesses: []

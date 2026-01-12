@@ -9,6 +9,7 @@ public class CharacterData : ScriptableObject
     public int CharacterID;
     //UI
     public string keyName;
+    public bool isOpp;
     
     public string displayName;
     public Sprite icon;

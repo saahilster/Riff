@@ -1,50 +1,33 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CharacterClass
+public class CharacterClass : MonoBehaviour
 {
-    private float HP;
-    private float MP;
-    private int _level;
-    private SkillSO[] _moveset;
-    private string[] _weaknesses;
-    private string[] _strengths;
-    private int _str;
-    private int _def;
+    [SerializeField] public CharacterData data;
+    public float HP;
+    public float MP;
+    private int level;
+    private SkillSO[] moveset;
+    private string[] weaknesses;
+    private string[] resists;
+    public int str;
+    public int def;
+    public bool isEnemy;
 
-    public CharacterClass(
-        float hp, 
-        float mp, 
-        int level, 
-        SkillSO[] moveset, 
-        string[] weaknesses,
-        string[] strengths,
-        int def,
-        int str
-        )
+    private void Start()
     {
-       hp = HP;
-       mp = MP;
-       level = _level;
-       moveset = _moveset;
-       weaknesses = _weaknesses;
-       strengths = _strengths;
-       str = _str;
-       def = _def; 
+        HP = data.HP;
+        MP = data.MP;
+        level = data.level;
+        moveset = data.moveset;
+        weaknesses = data.weaknesses;
+        resists = data.resists;
+        str = data.strength;
+        def = data.defense;
     }
 
-    public void UseMove()
+    private void Update()
     {
-        
-    }
 
-    public void BasicAttack()
-    {
-        
-    }
-
-    public void Gaurd()
-    {
-        
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4207158229957571633}
   - component: {fileID: 8338495240091464822}
   - component: {fileID: 8503087542481072412}
+  - component: {fileID: 6894279627419817611}
   m_Layer: 6
   m_Name: MedicBattlePrefab
   m_TagString: Untagged
@@ -85,6 +86,23 @@ CapsuleCollider:
   m_Height: 2.8
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6894279627419817611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2218580784402777457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b877fa8ad8c854cb6d6bb917f91b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterClass
+  data: {fileID: 11400000, guid: 1048fc8f7de5a1843ab419a21c4b457e, type: 2}
+  HP: 0
+  MP: 0
+  str: 0
+  def: 0
 --- !u!1 &2475298107879956176
 GameObject:
   m_ObjectHideFlags: 0
