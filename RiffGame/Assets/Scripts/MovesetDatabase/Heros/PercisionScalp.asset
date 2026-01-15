@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af10cd8b93a6a8d47a689b5afa015c3e, type: 3}
+  m_Name: PercisionScalp
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  keyID: 0
+  moveName: Percision Scalpel
+  description: With a small scalpel fling it towards your target.
+  icon: {fileID: 21300000, guid: e4888c19aea55754dbd5e3ae0fa56d62, type: 3}
+  art: {fileID: 21300000, guid: e4888c19aea55754dbd5e3ae0fa56d62, type: 3}
+  damage: 20
+  type: Normal
+  strMultiplier: 1
+  defMultiplier: 1
+  cost: 4
+  rollReq: 4
+  rangeRadius: 50
+  attackRadius: 0.5
+  duration: 0

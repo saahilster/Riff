@@ -3,19 +3,23 @@ using UnityEngine.UIElements;
 
 public class CharacterClass : MonoBehaviour
 {
+    [SerializeField] BattleTracker tracker;
     [SerializeField] public CharacterData data;
+    SphereCollider rangeRadius;
     public float HP;
     public float MP;
-    private int level;
-    private SkillSO[] moveset;
-    private string[] weaknesses;
-    private string[] resists;
+    public int level;
+    public SkillSO[] moveset;
+    public string[] weaknesses;
+    public string[] resists;
     public int str;
     public int def;
     public bool isEnemy;
+    public SkillSO currentMove;
 
     private void Start()
     {
+        rangeRadius = GetComponent<SphereCollider>();
         HP = data.HP;
         MP = data.MP;
         level = data.level;
@@ -29,5 +33,15 @@ public class CharacterClass : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        CharacterClass character = other.GetComponent<CharacterClass>();
+
+        if (other.gameObject.layer == 8 && character != null)
+        {
+            Debug.Log(other.gameObject.name);
+        }
     }
 }

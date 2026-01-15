@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af10cd8b93a6a8d47a689b5afa015c3e, type: 3}
+  m_Name: IceBaby
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  keyID: 0
+  moveName: Ice Baby
+  description: sunmmon bullets of frost. these little suckers are fast, long ranged,
+    and love to hinder thier targets. Roll 1d10.
+  icon: {fileID: 21300000, guid: 2f9830db7d6fe4445b4cc833aaa58764, type: 3}
+  art: {fileID: 21300000, guid: 2f9830db7d6fe4445b4cc833aaa58764, type: 3}
+  damage: 10
+  type: Water
+  strMultiplier: 0.8
+  defMultiplier: 0.8
+  cost: 4
+  rollReq: 3
+  rangeRadius: 50
+  attackRadius: 1
+  duration: 7

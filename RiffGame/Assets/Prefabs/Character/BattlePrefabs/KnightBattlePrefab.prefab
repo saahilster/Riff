@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1308100645099905135}
   - component: {fileID: 6959031301716432519}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: knight_humanoid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,9 +103,10 @@ GameObject:
   - component: {fileID: 8322126859240148305}
   - component: {fileID: 7689325273105587059}
   - component: {fileID: 5323780953592928778}
-  m_Layer: 6
+  - component: {fileID: -6725363477131854454}
+  m_Layer: 8
   m_Name: KnightBattlePrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,11 +190,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b877fa8ad8c854cb6d6bb917f91b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterClass
+  tracker: {fileID: 11400000, guid: 3c3cddbdd8f2571409f03e92dc39ef4b, type: 2}
   data: {fileID: 11400000, guid: 4c107a980986ea141b11587fd64be704, type: 2}
   HP: 0
   MP: 0
+  level: 0
+  moveset: []
+  weaknesses: []
+  resists: []
   str: 0
   def: 0
+  isEnemy: 0
+  currentMove: {fileID: 0}
+--- !u!135 &-6725363477131854454
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697894249618050400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3142122661716370651
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +234,7 @@ GameObject:
   - component: {fileID: 3886765794758742353}
   - component: {fileID: 5344758769462602154}
   - component: {fileID: 5061527048743835847}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

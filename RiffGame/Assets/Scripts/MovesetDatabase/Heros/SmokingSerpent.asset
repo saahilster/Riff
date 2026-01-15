@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af10cd8b93a6a8d47a689b5afa015c3e, type: 3}
+  m_Name: SmokingSerpent
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  keyID: 0
+  moveName: Pyrocynic Python
+  description: Use your flame spirit to attack a group of people. Roll 1d10
+  icon: {fileID: 21300000, guid: 6c69fa90a2dc87548b1f104479014dd3, type: 3}
+  art: {fileID: 21300000, guid: 6c69fa90a2dc87548b1f104479014dd3, type: 3}
+  damage: 20
+  type: Fire
+  strMultiplier: 1
+  defMultiplier: 1
+  cost: 3
+  rollReq: 2
+  rangeRadius: 20
+  attackRadius: 4
+  duration: 5

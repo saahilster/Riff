@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1168479466511832083}
   - component: {fileID: 1263941555745854641}
   - component: {fileID: 387377737780097953}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CylOpp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

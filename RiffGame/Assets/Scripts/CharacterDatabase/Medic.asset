@@ -14,15 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   CharacterID: 2
   keyName: Medic
+  isOpp: 0
   displayName: Medic
   icon: {fileID: 21300000, guid: 25d8abec7cc55e84298591d502e89dd0, type: 3}
   weaknesses: []
   resists: []
-  HP: 0
-  MP: 0
-  level: 0
-  strength: 0
-  defense: 0
-  moveset: []
+  HP: 200
+  MP: 100
+  level: 1
+  strength: 10
+  defense: 15
+  moveset:
+  - {fileID: 11400000, guid: 8cfd4bb23c138974d960718f7f5e05a3, type: 2}
+  - {fileID: 11400000, guid: b477fcb35845ee34abaf6e735eba1670, type: 2}
+  - {fileID: 11400000, guid: 6a3e9e3b348cc7d41ad5579c6e440365, type: 2}
+  - {fileID: 11400000, guid: 30959cc797ead7f47ba9216a5217d043, type: 2}
   battlePrefab: {fileID: 2218580784402777457, guid: b62f28f05c800874e85219f82a409ccf, type: 3}
   partyPrefab: {fileID: 2218580784402777457, guid: a356bebbd52222d458c97a68c6105cb1, type: 3}

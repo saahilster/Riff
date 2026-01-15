@@ -15,6 +15,8 @@ public class SkillSO : ScriptableObject
     public int keyID;
     public string moveName;
     public string description;
+    public Sprite icon;
+    public Sprite art;
 
     //"under the hood" data
     public float damage;
@@ -22,6 +24,13 @@ public class SkillSO : ScriptableObject
     //Default values for these will be 1. buffs in this game will work by multiplying the user's stats
     public float strMultiplier;
     public float defMultiplier;
-    //how many turns will it last.
-    public int turnDuration;
+    
+    //Cost for the move
+    public int cost;
+    //Have to roll this for it to work.
+    public int rollReq;
+    //Try to make a range system for moves.
+    public float rangeRadius;
+    public float attackRadius;
+    public float duration;
 }

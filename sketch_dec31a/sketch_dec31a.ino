@@ -13,8 +13,8 @@ MFRC522::MIFARE_Key key;
 MFRC522::StatusCode status;
 
 byte dataBlock[] = {};
-byte blockAddress = 1;
-byte trailerBlock = 3;
+byte blockAddress = 4;
+byte trailerBlock = 7;
 byte buffer[18];
 byte size = sizeof(buffer);
 

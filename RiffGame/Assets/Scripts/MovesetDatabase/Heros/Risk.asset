@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af10cd8b93a6a8d47a689b5afa015c3e, type: 3}
+  m_Name: Risk
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  keyID: 0
+  moveName: Risk
+  description: Your target will take significant damage. However, if they survive
+    their attack goes up exponentionally, and their defense drops exuberantly.
+  icon: {fileID: 21300000, guid: 4e2e49eeeb411d44ebe012e279000610, type: 3}
+  art: {fileID: 21300000, guid: 4e2e49eeeb411d44ebe012e279000610, type: 3}
+  damage: 100
+  type: Paranormal
+  strMultiplier: 5
+  defMultiplier: 0.2
+  cost: 10
+  rollReq: 8
+  rangeRadius: 20
+  attackRadius: 0.5
+  duration: 30

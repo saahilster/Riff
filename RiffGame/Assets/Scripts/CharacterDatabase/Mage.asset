@@ -14,15 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   CharacterID: 1
   keyName: Mage
+  isOpp: 0
   displayName: Wizard
   icon: {fileID: 21300000, guid: b3c31308c3180514a845edfed0448560, type: 3}
   weaknesses: []
   resists: []
-  HP: 0
-  MP: 0
-  level: 0
-  strength: 0
-  defense: 0
-  moveset: []
+  HP: 175
+  MP: 1
+  level: 1
+  strength: 25
+  defense: 6
+  moveset:
+  - {fileID: 11400000, guid: 5f896061817a1e942b5114c323545876, type: 2}
+  - {fileID: 11400000, guid: 144d79b0141559e48953e5840da29ca6, type: 2}
+  - {fileID: 11400000, guid: 7c6e4a21ab407c84ea6b06ab3d213f19, type: 2}
+  - {fileID: 11400000, guid: 02e3212fbd3fc7b4dbe07ff1d67d8d9a, type: 2}
   battlePrefab: {fileID: 2056702055880963101, guid: 4ceef151cf6bd02498973e3bb20e18b4, type: 3}
   partyPrefab: {fileID: 2056702055880963101, guid: 984a6a92e8e32ac4caaf4fad13bcef63, type: 3}

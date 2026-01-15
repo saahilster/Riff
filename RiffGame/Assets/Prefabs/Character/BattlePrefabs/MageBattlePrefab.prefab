@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9172282056346403341}
   - component: {fileID: 33758548056687804}
   - component: {fileID: 6162300320957015081}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,8 @@ GameObject:
   - component: {fileID: 9173990430451033371}
   - component: {fileID: -6989302189059428054}
   - component: {fileID: 2856925050568051972}
-  m_Layer: 6
+  - component: {fileID: 7705130542378487859}
+  m_Layer: 8
   m_Name: MageBattlePrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -188,11 +189,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b877fa8ad8c854cb6d6bb917f91b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterClass
+  tracker: {fileID: 11400000, guid: 3c3cddbdd8f2571409f03e92dc39ef4b, type: 2}
   data: {fileID: 11400000, guid: 43536d71f061dd44abee01b96820caff, type: 2}
   HP: 0
   MP: 0
+  level: 0
+  moveset: []
+  weaknesses: []
+  resists: []
   str: 0
   def: 0
+  isEnemy: 0
+  currentMove: {fileID: 0}
+--- !u!135 &7705130542378487859
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056702055880963101}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2823074418561375881
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081394614642944874}
   - component: {fileID: 6966999846801008760}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: mage_humanoid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

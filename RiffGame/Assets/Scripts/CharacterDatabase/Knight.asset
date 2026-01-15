@@ -14,15 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   CharacterID: 0
   keyName: Knight
+  isOpp: 0
   displayName: Knight
   icon: {fileID: 21300000, guid: 3aa70883eb67b0548a71f0e189ec4175, type: 3}
   weaknesses: []
   resists: []
-  HP: 0
-  MP: 0
-  level: 0
-  strength: 0
-  defense: 0
-  moveset: []
+  HP: 200
+  MP: 1
+  level: 1
+  strength: 22
+  defense: 22
+  moveset:
+  - {fileID: 11400000, guid: 9bc0104effa732d4aa0bfa805b27fa4a, type: 2}
+  - {fileID: 11400000, guid: cfa91cc10f20c544da52d023ae66286f, type: 2}
+  - {fileID: 11400000, guid: 950c0e6e52ce792468ebf5dec5fa4620, type: 2}
+  - {fileID: 11400000, guid: b0ce26e7323113845ac9b3dc941a3f82, type: 2}
   battlePrefab: {fileID: 2697894249618050400, guid: 27986a4135a0a6146b33f1bb1dfdf327, type: 3}
   partyPrefab: {fileID: 2697894249618050400, guid: 6a1bc335dd68c834d980dab689b7e59b, type: 3}

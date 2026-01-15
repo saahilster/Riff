@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.MPE;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,22 +9,21 @@ using UnityEngine.Events;
 //Also need to delete data that has expired turns
 public class TurnManager : MonoBehaviour
 {
-    public UnityEvent PlayerTurn;
-    public UnityEvent EnemyTurn;
-    public int currentTurn;
-    public int totalTurn = 0;
+    public BattleTracker tracker;
+    public UnityEvent PlayerTurnEvent;
+    public UnityEvent EnemyTurnEvent;
     public List<CharacterClass> party;
     public List<CharacterClass> opps;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerTurn.Invoke();
+
     }
     // Update is called once per frame
     void Update()
     {
-        
+        LifeCycle();
     }
 
     /// <summary>
@@ -42,4 +43,21 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    public void LifeCycle()
+    {
+        //W/L Conditions
+        if (party == null)
+        {
+            Debug.Log("Lost");
+            return;
+        }
+        else if (opps == null)
+        {
+            Debug.Log("Won match");
+            return;
+        }
+
+        PlayerTurnEvent.Invoke();
+        EnemyTurnEvent.Invoke();
+    }
 }

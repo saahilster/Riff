@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4782023629115249276}
   - component: {fileID: 4851306432670027546}
   - component: {fileID: -422279007544978322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FatOpp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
