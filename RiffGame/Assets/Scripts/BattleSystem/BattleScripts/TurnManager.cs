@@ -1,29 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.MPE;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 //Turn manager is the validator for all actions being taken place.
 //need to create an event where the move data is stored in here and then acts upon those per turn 
 //Also need to delete data that has expired turns
 public class TurnManager : MonoBehaviour
 {
-    public BattleTracker tracker;
-    public UnityEvent PlayerTurnEvent;
-    public UnityEvent EnemyTurnEvent;
+    public static TurnManager instance;
+    public SkillSO currentSkill;
+    public CharacterClass currentPlayer;
+    public bool attacking;
+
     public List<CharacterClass> party;
     public List<CharacterClass> opps;
-    
+    [SerializeField] GameObject attackingMode;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+
+        currentPlayer = null;
+        currentSkill = null;
+
+        party ??= new List<CharacterClass>();
+        opps ??= new List<CharacterClass>();
+    }
     void Start()
     {
-
+        attacking = false;
     }
     // Update is called once per frame
     void Update()
     {
         LifeCycle();
+        UpdateAttackDisplay();
     }
 
     /// <summary>
@@ -45,19 +68,28 @@ public class TurnManager : MonoBehaviour
 
     public void LifeCycle()
     {
-        //W/L Conditions
-        if (party == null)
+        if (party == null || opps == null)
         {
-            Debug.Log("Lost");
-            return;
-        }
-        else if (opps == null)
-        {
-            Debug.Log("Won match");
+            Debug.LogError("Party lists not initialized!");
             return;
         }
 
-        PlayerTurnEvent.Invoke();
-        EnemyTurnEvent.Invoke();
+        party.RemoveAll(x => x == null);
+        opps.RemoveAll(x => x == null);
+
+        //W/L Conditions
+        if (party.Count == 0)
+        {
+            Debug.Log("Lost");
+        }
+        else if (opps.Count == 0)
+        {
+            Debug.Log("Won match");
+        }
+    }
+
+    public void UpdateAttackDisplay()
+    {
+        attackingMode.SetActive(attacking);
     }
 }

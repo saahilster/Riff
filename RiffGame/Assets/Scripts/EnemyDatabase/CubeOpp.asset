@@ -19,11 +19,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   weaknesses: []
   resists: []
-  HP: 0
-  MP: 0
-  level: 0
-  strength: 0
-  defense: 0
+  HP: 100
+  MP: 1
+  level: 1
+  strength: 10
+  defense: 10
   moveset: []
   battlePrefab: {fileID: 6287888698733699654, guid: bb4e59bcad7e5f94e8ac91cf9f02a25e, type: 3}
   partyPrefab: {fileID: 0}

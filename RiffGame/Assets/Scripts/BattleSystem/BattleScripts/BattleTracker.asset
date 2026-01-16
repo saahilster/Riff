@@ -12,5 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dabc76a4fa5297e4887f6866fc97fa3d, type: 3}
   m_Name: BattleTracker
   m_EditorClassIdentifier: Assembly-CSharp::BattleTracker
-  currentSkill: {fileID: 0}
-  currentPlayer: {fileID: 0}

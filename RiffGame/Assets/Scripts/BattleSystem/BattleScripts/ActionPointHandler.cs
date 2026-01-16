@@ -6,11 +6,22 @@ using UnityEngine;
 
 public class ActionPointHandler : MonoBehaviour
 {
+    public static ActionPointHandler instance;
     [SerializeField] private TextMeshProUGUI apDisplay;
     public int actionPoints = 1;
     public float APMulti = 1;
     public float playerAP;
     public bool addedPoints;
+
+    void Awake()
+    {
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

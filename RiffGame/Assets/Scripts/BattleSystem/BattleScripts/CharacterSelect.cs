@@ -7,6 +7,7 @@ using UnityEngine.UI;
 //Script will be used to choose a player then it will bring up the appropriate UI needed.
 public class CharacterSelect : MonoBehaviour
 {
+    TurnManager tracker = TurnManager.instance;
     public CharacterClass selectedPlayer;
     public LayerMask mask;
     [SerializeField] GameObject ui;
@@ -20,10 +21,10 @@ public class CharacterSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Escape))
-        {
-            ui.SetActive(false);
-        }
+        // if (Input.GetKey(KeyCode.Escape))
+        // {
+        //     ui.SetActive(false);
+        // }
         SelectPlayer();
     }
 

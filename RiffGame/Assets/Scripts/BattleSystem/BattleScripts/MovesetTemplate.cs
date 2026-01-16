@@ -6,7 +6,7 @@ using UnityEngine;
 //Added to every move button.
 public class MovesetTemplate : MonoBehaviour
 {
-    [SerializeField] BattleTracker tracker;
+    TurnManager tracker;
     public GameObject battler;
     public BoxCollider hurtbox;
     public SkillSO moveData;
@@ -15,7 +15,7 @@ public class MovesetTemplate : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        tracker = TurnManager.instance;
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class MovesetTemplate : MonoBehaviour
         if (moveData == null)
         {
             return;
-        }        
+        }
     }
 
     public void AddRange()
@@ -48,6 +48,7 @@ public class MovesetTemplate : MonoBehaviour
             return;
         }
 
+        tracker.attacking = true;
         charClass.currentMove = moveData;
         tracker.currentSkill = moveData;
         tracker.currentPlayer = charClass;
